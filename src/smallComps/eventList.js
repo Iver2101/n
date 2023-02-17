@@ -1,6 +1,5 @@
-import { useNavigation } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import React, { useState } from 'react';
+import React, { useState, Component } from 'react';
+
 import {
     FlatList,
     Image,
@@ -25,10 +24,10 @@ const Item = ({ title, img, eventStart, eventEnd, location, manager, func }) => 
                 style={styles.image}
                 source={{ uri: img }}
             />
-            <Text>{title}</Text>
-            <Text>{eventStart + " - " + eventEnd}</Text>
-            <Text>{location}</Text>
-            <Text>{manager}</Text>
+            <Text style = {styles.titleStyle}>{title}</Text>
+            <Text style = {styles.dateStyle}>{eventStart + " - " + eventEnd}</Text>
+            <Text style = {styles.locationStyle}>{location}</Text>
+            <Text style = {styles.managerStyle}>{manager}</Text>
         </TouchableOpacity>)
 }
 
@@ -58,7 +57,10 @@ const EventList = ({ elements, navigation}) => {
             data={elements}
             renderItem={renderItem}
             keyExtractor={(item, index) => item.id}
-            style={{ width: "95%", alignContent: "center", backgroundColor: "blue" }}
+            style={{ 
+                width: "95%", 
+                alignContent: "center", 
+                alignSelf: "center"}}
         />
     );
 }
@@ -66,17 +68,43 @@ const EventList = ({ elements, navigation}) => {
 
 const styles = StyleSheet.create({
     item: {
-        padding: 20,
-        margin: 10,
+        marginTop: 50,
+        flexDirection: "row",
+        flexWrap: "wrap",
+        padding: 10,
+        margin: 5,
         borderRadius: 15,
-        backgroundColor: "#A59D9D"
+        backgroundColor: "#f0f0f0",
     },
     image: {
-        height: 20,
-        width: 60
+        height: 80,
+        width: 80,
+        borderRadius: 15
+    },
+    titleStyle: {
+        marginLeft: 10,
+        fontSize: 15,
+        fontWeight: "bold"
+    },
+    dateStyle: {
+        marginLeft: -85,
+        marginTop: 20,
+        fontSize: 12,
+        color: "#808080"
+    },
+    locationStyle: {
+        marginLeft: -125,
+        marginTop: 40,
+        fontSize: 12,
+        color: "#808080"
+    },
+    managerStyle: {
+        marginLeft: -115,
+        marginTop: 60,
+        fontSize: 12,
+        color: "#808080"
     }
+    
 })
-
-
 
 export default EventList;
