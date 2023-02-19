@@ -20,7 +20,7 @@ import Banner from './src/smallComps/eventBanner';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Event from './src/screens/event';
 import { NavigationContainer } from '@react-navigation/native';
-import Tab from './src/nav/Tabs';
+import Tabs from './src/nav/Tabs';
 
 
 
@@ -64,16 +64,17 @@ const elements =
     }
   ]
 
-const eventStack = createNativeStackNavigator();
-const App = () => {
-  return (
-    <View>
-<EventList elements={elements}/>    </View>
-
-
-  );
-}
-
+  const eventStack = createNativeStackNavigator();
+  const App = () => {
+    return (
+      <View>
+        <EventList elements={elements}/>
+        <NavigationContainer> 
+          <Tabs />
+        </NavigationContainer>
+      </View>
+    );
+  }
 
 const styles = StyleSheet.create({
 
