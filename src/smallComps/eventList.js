@@ -1,6 +1,6 @@
 import { useNavigation } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import {
     FlatList,
     Image,
@@ -14,6 +14,7 @@ import {
     useColorScheme,
     View,
 } from 'react-native';
+import { Cont } from '../screens/starred';
 
 
 const Item = ({ title, img, eventStart, eventEnd, location, manager, func }) => {
@@ -35,10 +36,13 @@ const Item = ({ title, img, eventStart, eventEnd, location, manager, func }) => 
 
 
 
-const EventList = ({ elements, navigation}) => {
+const EventList = ({ elements, navigation }) => {
+
+    const { count, setCount } = useContext(Cont)
+
 
     const onPress = (item) => {
-        navigation.navigate("Event", {item})
+        navigation.navigate("Event", { item })
     }
 
     const renderItem = ({ item }) => {
@@ -52,19 +56,27 @@ const EventList = ({ elements, navigation}) => {
             manager={item.manager}
         />
     }
-    
+
     return (
-        <FlatList
-            data={elements}
-            renderItem={renderItem}
-            keyExtractor={(item, index) => item.id}
-            style={{ width: "95%", alignContent: "center", backgroundColor: "blue" }}
-        />
+        <View style={styles.wrapper}>
+            <FlatList
+                data={elements}
+                renderItem={renderItem}
+                keyExtractor={(item, index) => item.id}
+                style={{ width: "95%", alignContent: "center", backgroundColor: "blue" }}
+            />
+        </View>
+
     );
 }
 
 
 const styles = StyleSheet.create({
+    wrapper: {
+        marginTop: 2,
+        height:1000
+
+    },
     item: {
         padding: 20,
         margin: 10,

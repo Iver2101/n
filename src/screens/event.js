@@ -7,28 +7,43 @@ import {
     SafeAreaView,
     ScrollView,
     StatusBar,
-    StyleSheet,
-    Text,
-    Touchable,
-    TouchableOpacity,
-    useColorScheme,
-    View,
+    StyleSheet,TouchableOpacity,Text
+
 } from 'react-native';
+import Banner from '../smallComps/eventBanner';
+import { Button } from '@rneui/base';
+import MyButton from '../smallComps/myButton';
+import EventMenu from '../smallComps/eventMenu';
+
+const onPress = () => {
+    console.log("hei")
+}
 
 const Event = () => {
     return (
-        <ImageBackground style={styles.banner} source={{uri:"https://akamai.vgc.no/v2/images/d0131e19-b7fe-47fc-bfbb-e5784d61073a?fit=crop&format=auto&h=733&w=1100&s=dc5273f5ed0b3638485d7183e448ce914bd5b826"}}>
-            <Text style={{color:"pink"}}>aaaaasdfdsaf"!"#!¤#¤%</Text>
-        </ImageBackground>
+<><Banner />
+<MyButton text={"hei"} onPress={onPress} btnStyles={{backgroundColor:"black"}}/>
+
+<EventMenu/>
+
+</>
+        
     );
 }
- 
 
 const styles = StyleSheet.create({
-    banner: {
-        height:250,
-        width: "100%"
+    button: {
+        backgroundColor: '#007AFF', // or any other color you prefer
+        borderRadius: 10,
+        paddingHorizontal: 2,
+        paddingVertical: 2,
+        width: 80,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    buttonText: {
+        color: '#FFFFFF', // or any other color you prefer
+        fontSize: 14,
     }
-})
-
+});
 export default Event;
