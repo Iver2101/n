@@ -6129,7 +6129,7 @@ react-native-vector-icons@>7.0.0:
     prop-types "^15.7.2"
     yargs "^16.1.1"
 
-react-native@*, react-native@0.71.1:
+react-native@*, react-native@^0.71.1:
   version "0.71.1"
   resolved "https://registry.npmjs.org/react-native/-/react-native-0.71.1.tgz"
   integrity sha512-bLP5+IBj2IX6tgF9WnC/UL2ZPYkVUPsU4xqZV1jntTC2TH4xyLrvfKACjGlz5nQ3Mx4BmOFqsnMxithm53+6Aw==

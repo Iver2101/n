@@ -1,3 +1,4 @@
+import { useNavigation } from '@react-navigation/native';
 import React, { useState, Component } from 'react';
 
 import {
@@ -34,7 +35,9 @@ const Item = ({ title, img, eventStart, eventEnd, location, manager, func }) => 
 
 
 
-const EventList = ({ elements, navigation}) => {
+const EventList = ({ elements}) => {
+    const navigation = useNavigation()
+    console.log(navigation);
 
     const onPress = (item) => {
         navigation.navigate("Event", {item})

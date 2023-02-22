@@ -67,12 +67,9 @@ const elements =
   const eventStack = createNativeStackNavigator();
   const App = () => {
     return (
-      <View>
-        <EventList elements={elements}/>
-        <NavigationContainer> 
-          <Tabs />
-        </NavigationContainer>
-      </View>
+
+          <Tabs style={{height: "90%", width: "90%"}} elements={elements} />
+
     );
   }
 
