@@ -1,112 +1,94 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import MaterialIcons from "react-native-vector-icons/MaterialIcons";
+import AntDesign from "react-native-vector-icons/AntDesign";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import Event from "../screens/event";
+import EventList from "../smallComps/eventList";
 import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+
 
 const Tab = createBottomTabNavigator();
+const eventNav = createNativeStackNavigator();
 
 
-const Tabs = () => {
+const Tabs = ({ elements }) => {
     return (
         <NavigationContainer>
-<Tab.Navigator
-            screenOptions={{
-                headerShown: false,
-                tabBarShowLabel: false,
-                tabBarstyle: {
-                    position: "absolute",
-                    padding: 0,
-                    left: 100,
-                    right: 100,
-                    paddinHorizontal: 20,
-                    bottom: 50,
-                    height: 60,
-                    borderRadius: 100,
-                    backgroundColor: "#ffffff",
-                    shadowColor: "#393939",
-                    shadowOffset: {
-                        width: 3,
-                        height: 3,
-                    },
-                    shadowOpacity: 0.15,
-                    shadowRadius: 5,
-                    elevation: 0,
-                },
-            }}
-        >
-        <Tab.Screen
-            name="Home"
-            component={Event}
-            options={{
-                tabBarIcon: ({ focused }) => (
-                    <View style={styles.iconContainer}>
-                        <MaterialIcons
-                            name="home"
-                            style={styles.icon}
-                        />
-                        <Text style={styles.txtStyle}>Home</Text>
-                    </View>
-                ),
-            }}
-        /> 
-        <Tab.Screen
-        
-            name="Starred"
-            component={Event}
-            options={{
-                tabBarIcon: ({ focused }) => (
-                    <View style={styles.iconContainer}>
-                        <MaterialIcons
-                            name="star"
-                            style={styles.icon}
-                        />
-                        <Text style={styles.txtStyle}>Starred</Text>
-                    </View>
-                ),
-            }}
-        />
-        <Tab.Screen
-            name="User"
-            component={Event}
-            options={{
-                tabBarIcon: ({ focused }) => (
-                    <View style={styles.iconContainer}>
-                        <Ionicons
-                            name="person"
-                            style={styles.icon}
-                        />
-                        <Text style={styles.txtStyle}>User</Text>
-                    </View>
-                ),
-            }}
-        />
-        </Tab.Navigator>
 
+
+            <Tab.Navigator
+                initialRouteName="Start"
+                screenOptions={{
+                    headerShown: false,
+                    tabBarShowLabel: false,
+
+                }}
+            >
+                <Tab.Screen
+                    name="Start"
+                    children={() => {
+                        return<eventNav.Navigator>
+                                <eventNav.Screen name="EventList" children={() => <EventList elements={elements}/>}/>
+                                <eventNav.Screen name="Event" component={Event}/>
+                            </eventNav.Navigator>
+                            
+                    }}
+                    options={{
+                        tabBarIcon: ({ focused }) => (
+                            <View style={styles.iconContainer}>
+                                <Ionicons
+                                    name="home-outline"
+                                    style={styles.icon}
+                                />
+                            </View>
+                        ),
+                    }}
+                />
+                <Tab.Screen
+
+                    name="Starred"
+                    component={Event}
+                    options={{
+                        tabBarIcon: ({ focused }) => (
+                            <View style={styles.iconContainer}>
+                                <AntDesign
+                                    name="staro"
+                                    style={styles.icon}
+                                />
+                            </View>
+                        ),
+                    }}
+                />
+                <Tab.Screen
+                    name="User"
+                    component={Event}
+                    options={{
+                        tabBarIcon: ({ focused }) => (
+                            <View style={styles.iconContainer}>
+                                <Ionicons
+                                    name="person-outline"
+                                    style={styles.icon}
+                                />
+                            </View>
+                        ),
+                    }}
+                />
+            </Tab.Navigator>
         </NavigationContainer>
-        
-);
+
+    );
 };
 
 const styles = StyleSheet.create({
     iconContainer: {
-        alignItems: "center",
-        justifyContent: "center",
-        top: 10,
     },
     icon: {
-        width: 30,
-        height: 30,
-    },
-    txtStyle: {
-        fontSize: 12,
-        color: "#000000",
-        fontWeight: "bold",
+        fontSize: 30,
+        alignSelf: "center",
+        color: "#696969",
     },
 });
-
-
 
 export default Tabs;
